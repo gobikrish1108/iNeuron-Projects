@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pack Price Prediction</h1>
+        <form action="/predict" method="post">
+            <label for="country">Country:</label>
+            <select name="country" id="country">
+                <option value="South Africa">South Africa</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Vietnam">Vietnam</option>
+                <option value="Zambia">Zambia</option>
+                <option value="Haiti">Haiti</option>
+                <option value="Mozambique">Mozambique</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <label for="shipment_mode">Shipment Mode:</label>
+            <select name="shipment_mode" id="shipment_mode">
+                <option value="Air">Air</option>
+                <option value="Truck">Truck</option>
+                <option value="Air Charter">Air Charter</option>
+                <option value="Ocean">Ocean</option>
+            </select>
+
+            <label for="product_group">Product Group:</label>
+            <select name="product_group" id="product_group">
+                <option value="ARV">ARV</option>
+                <option value="HRDT">HRDT</option>
+                <option value="ANTM">ANTM</option>
+                <option value="ACT">ACT</option>
+                <option value="MRDT">MRDT</option>
+            </select>
+
+            <label for="sub_classification">Sub Classification:</label>
+            <select name="sub_classification" id="sub_classification">
+                <option value="Adult">Adult</option>
+                <option value="Pediatric">Pediatric</option>
+                <option value="HIV test">HIV test</option>
+                <option value="HIV test - Ancillary">HIV test - Ancillary</option>
+                <option value="Malaria">Malaria</option>
+                <option value="ACT">ACT</option>
+            </select>
+
+            <label for="brand">Brand:</label>
+            <select name="brand" id="brand">
+                <option value="Generic">Generic</option>
+                <option value="Others">Others</option>
+                <option value="Determine">Determine</option>
+            </select>
+
+            <label for="unit_of_measure">Unit of Measure (Per Pack):</label>
+            <input type="number" name="unit_of_measure" id="unit_of_measure" required>
+
+            <label for="line_item_quantity">Line Item Quantity:</label>
+            <input type="number" name="line_item_quantity" id="line_item_quantity" required>
+
+            <label for="line_item_value">Line Item Value:</label>
+            <input type="number" step="0.01" name="line_item_value" id="line_item_value" required>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>{{ result }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
